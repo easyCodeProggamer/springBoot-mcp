@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: mcpClentDemo
+    
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      init:
+        timeout: 5m
+        pull-model-strategy: when-missing
+      chat:
+        options: 
+          model: mistral
+          #model: deepseek-r1:7b
+          #model: deepseek-r1:1.5b
+          #temperature: 0.7
+    mcp:
+      client:
+        toolcallback:
+          enabled: true
+        sse:
+          connections:
+            author-tools-server:
+              url: http://localhost:8081
+        
+        stdio:
+          connections:
+            filesystem:
+              command: "C:/Program Files/nodejs/npx.cmd"
+              args:
+                - "-y"
+                - "@modelcontextprotocol/server-filesystem"
+                #- "C:/mrigank"
+                #- "C:/mrigank"
+                - C:/Users/Mriganka/Downloads/mcpClentDemo/mcpClentDemo
+                - C:/Users/Mriganka/Downloads/mcpClentDemo/mcpClentDemo
+
+
+
+
+            brave-search:
+              command: npx
+              args:
+                - "-y"
+                - "@modelcontextprotocol/server-brave-search"
+              env:
+                BRAVE_API_KEY: ${BRAVE_API_KEY}
